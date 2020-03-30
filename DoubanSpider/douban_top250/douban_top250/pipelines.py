@@ -16,7 +16,8 @@ class DoubanTop250Pipeline(object):
 
     def open_spider(self, spider):
         self.file = open(self._file_path, 'wb')
-        self.exporter = JsonItemExporter(self.file)
+        self.exporter = JsonItemExporter(
+            self.file, ensure_ascii=False, encoding='utf-8')
         self.exporter.start_exporting()
 
     def close_spider(self, spider):
@@ -25,6 +26,6 @@ class DoubanTop250Pipeline(object):
         print(f"parse result is saved to {self._file_path}")
 
     def process_item(self, item, spider):
-        #print(f"exporting item: {item}")
+        print(f"exporting item: {item}")
         self.exporter.export_item(item)
         return item

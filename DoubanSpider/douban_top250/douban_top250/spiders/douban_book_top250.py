@@ -38,4 +38,5 @@ class DoubanBookTop250Spider(scrapy.Spider):
         item["author"] = "|".join(author_list)
         item["rating"] = selector.xpath(
             "//*[@id='interest_sectl']//strong/text()")[0].strip()
-        print(item)
+        # print(item)
+        yield item
